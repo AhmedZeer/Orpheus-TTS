@@ -23,10 +23,11 @@ number_processes = config["number_processes"]
 learning_rate = config["learning_rate"]
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name, attn_implementation="flash_attention_2")
+# model = AutoModelForCausalLM.from_pretrained(model_name, attn_implementation="flash_attention_2")
+model = AutoModelForCausalLM.from_pretrained(model_name)
 
 
-ds = load_dataset(dsn, split="train") 
+ds = load_dataset(dsn, split="train[:100]") 
 
 wandb.init(project=project_name, name = run_name)
 
